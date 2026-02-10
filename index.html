@@ -14,8 +14,10 @@ body{
   min-height:100vh;
   background:linear-gradient(135deg,#ffd6e8,#ffeaf3);
   font-family:'Poppins',sans-serif;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
+
 
 /* PAGE SYSTEM */
 .page{
@@ -23,16 +25,18 @@ body{
   inset:0;
   display:flex;
   min-height:100vh;
-  padding:20px;
+  padding:80px 20px 40px; /* ruang back button */
   text-align:center;
-  justify-content:center;
+  justify-content:flex-start; /* ⬅️ PENTING */
   align-items:center;
   flex-direction:column;
+  overflow-y:auto; /* ⬅️ PENTING */
   opacity:0;
   transform:translateX(30px);
   pointer-events:none;
   transition:.45s ease;
 }
+
 .page.active{
   opacity:1;
   transform:translateX(0);
@@ -41,12 +45,13 @@ body{
 
 /* BACK BUTTON */
 .back{
-  position:absolute;
-  top:18px;
-  left:18px;
+  position:fixed;        /* ⬅️ WAJIB */
+  top:16px;
+  left:16px;
   width:40px;
   height:40px;
-  aspect-ratio:1 / 1;
+  z-index:9999;          /* ⬅️ BIAR GAK KETUTUP */
+
   padding:0;
   border:none;
   border-radius:50%;
@@ -111,17 +116,20 @@ button:active{transform:scale(.92)}
 .photos{
   display:flex;
   gap:24px;
-  margin-top:20px;
+  margin-top:24px;
   justify-content:center;
-  max-width:800px;
+  align-items:center;
+  width:100%;
+  max-width:900px;
   margin-left:auto;
   margin-right:auto;
 }
 
-/* ❌ JANGAN opacity:0 GLOBAL */
 .photos img{
-  width:280px;
-  border-radius:16px;
+  width:100%;
+  max-width:340px;
+  border-radius:20px;
+  object-fit:cover;
   opacity:1;
   transition:opacity .6s ease, transform .6s ease;
 }
@@ -137,26 +145,30 @@ button:active{transform:scale(.92)}
   .photos{
     flex-direction:column;
     align-items:center;
-    gap:16px;
+    gap:18px;
+    width:100%;
   }
 
   .photos img{
-    width:85%;
-    opacity:1;
+    width:90%;
+    max-width:360px;
   }
 }
 
+
 /* LETTER */
 .card{
+  width:100%;
+  max-width:420px;
   background:rgba(255,255,255,.75);
   -webkit-backdrop-filter:blur(10px);
   backdrop-filter:blur(10px);
   border-radius:24px;
-  padding:32px 26px;
-  max-width:420px;
+  padding:28px 22px;
   box-shadow:0 20px 40px rgba(255,182,193,.35);
   opacity:0;
 }
+
 .card h1{
   font-family:'Cormorant Garamond',serif;
   color:#d63384;
@@ -167,7 +179,12 @@ button:active{transform:scale(.92)}
 .heart{font-size:26px;color:#ff5c8a}
 
 /* VIDEO */
-video{width:90%;max-width:360px;border-radius:20px}
+video{
+  width:100%;
+  max-width:360px;
+  border-radius:20px;
+  margin-top:20px;
+}
 
 /* ===== ANIMATIONS BASED ON ACTIVE ===== */
 .page.active .photos img{
