@@ -118,21 +118,31 @@ button:active{transform:scale(.92)}
   margin-right:auto;
 }
 
+/* ❌ JANGAN opacity:0 GLOBAL */
 .photos img{
   width:280px;
   border-radius:16px;
-  opacity:0;
+  opacity:1;
+  transition:opacity .6s ease, transform .6s ease;
 }
 
-/* === TAMBAHIN DI BAWAH INI === */
+/* (OPSIONAL) KALAU MAU ANIMASI */
+.photos img.hide{
+  opacity:0;
+  transform:translateY(20px);
+}
+
+/* MOBILE AMAN */
 @media (max-width:768px){
   .photos{
     flex-direction:column;
     align-items:center;
+    gap:16px;
   }
 
   .photos img{
-    width:80%;
+    width:85%;
+    opacity:1;
   }
 }
 
