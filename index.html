@@ -110,14 +110,30 @@ button:active{transform:scale(.92)}
 /* PHOTOS PAGE 2 */
 .photos{
   display:flex;
-  gap:14px;
+  gap:24px;
   margin-top:20px;
   justify-content:center;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
 }
+
 .photos img{
-  width:30%;
+  width:280px;
   border-radius:16px;
   opacity:0;
+}
+
+/* === TAMBAHIN DI BAWAH INI === */
+@media (max-width:768px){
+  .photos{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .photos img{
+    width:80%;
+  }
 }
 
 /* LETTER */
