@@ -70,12 +70,20 @@ body{
 }
 
 .back .arrow{
-  display:block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  height:100%;
+
   font-size:20px;
   line-height:1;
-  transform:translateX(-1px); /* ⬅️ FIX OPTIK MOBILE */
   color:#ff5c8a;
+
+  transform:translate(-1px, 1px); /* ⬅️ FIX FINAL */
 }
+
 
 /* BUTTON */
 button{
@@ -201,6 +209,11 @@ video{
   padding-top:50px;
 }
 
+.page:not(.cover) > h2{
+  margin-top:64px;
+}
+
+
 /* CONTENT */
 .content{
   width:100%;
@@ -276,6 +289,8 @@ video{
   <span class="arrow">←</span>
 </button>
 
+  <span class="arrow">←</span>
+</button>
 
   <div class="content">
     <h2 class="title-pink">This Is My Favorite View 🥰</h2>
@@ -290,13 +305,11 @@ video{
   </div>
 </div>
 
-
 <!-- PAGE 3 -->
 <div class="page center">
   <button class="back" onclick="goBack()">
   <span class="arrow">←</span>
 </button>
-
 
   <h2 class="title-pink title-big">I wrote a letter for you 💌</h2>
   <p class="text-medium">Do you want to open it, love?</p>
@@ -320,7 +333,6 @@ video{
 <button class="back" onclick="goBack()">
   <span class="arrow">←</span>
 </button>
-
 
   <div class="card">
     <h1>Happy Birthday Khaiza&nbsp;Andini</h1>
