@@ -215,6 +215,15 @@ video{
   box-shadow:0 12px 28px rgba(0,0,0,.15);
 }
 
+/* FIX PAGE 4 - BIKIN KONTEN TURUN BIAR GAK KETUTUP */
+.video-content{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:50px; /* ⬅️ INI YANG PENTING - TURUNIN KONTEN */
+}
+
 /* CONTENT WRAPPER */
 .content{
   width:100%;
@@ -326,12 +335,16 @@ video{
 </div>
 
 <!-- PAGE 4 - VIDEO (kalau pilih "No") -->
+<!-- PAGE 4 -->
 <div class="page">
-  <button class="back" onclick="goBack()">←</button>
+  <button class="back" onclick="goBack()">
+    <span class="arrow">←</span>
+  </button>
 
-  <h2 class="title-pink title-big">Still curious, aren't you? 😏</h2>
-  <video src="gift1.mp4" autoplay loop muted playsinline></video>
-  <button onclick="go(4)">Fine, show me the letter</button>
+  <div class="video-content">
+    <h2 class="title-pink">Still curious, aren't you? 😏</h2>
+    <video src="gift1.mp4" autoplay loop muted playsinline></video>
+  </div>
 </div>
 
 <!-- PAGE 5 - LETTER -->
