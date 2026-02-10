@@ -49,32 +49,27 @@ body{
 /* BACK BUTTON */
 .back{
   position:absolute;
-  top:16px;
-  left:16px;
+  top:20px;
+  left:20px;
   width:42px;
   height:42px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  z-index:10;
 
   border:none;
   border-radius:50%;
   background:#fff;
 
-  padding:0;
-  cursor:pointer;
-  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  box-shadow:0 4px 12px rgba(255,92,138,.25);
-}
-
-.back .arrow{
-  display:block;
   font-size:20px;
   line-height:1;
-  transform:translateX(-1px); /* ⬅️ FIX OPTIK MOBILE */
+  padding:0;
+
   color:#ff5c8a;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(255,92,138,.25);
 }
 
 /* BUTTON */
@@ -195,11 +190,6 @@ video{
 
 .page.center{
   justify-content:center;
-}
-
-/* SAFE AREA FOR BACK BUTTON */
-.page:not(.cover){
-  padding-top:80px;
 }
 
 /* CONTENT */
