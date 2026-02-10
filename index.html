@@ -18,20 +18,17 @@ body{
   overflow-y:auto;
 }
 
-
 /* PAGE SYSTEM */
 .page{
   position:absolute;
   inset:0;
   display:flex;
   min-height:100dvh;
-  padding:40px 20px;
+  padding:80px 20px 40px 20px; /* Tambah padding atas biar nggak ketimpa back button */
   text-align:center;
   flex-direction:column;
-
-  justify-content:flex-start; /* ⬅️ PENTING */
+  justify-content:center; /* Default center dulu */
   align-items:center;
-
   overflow-y:auto;
   opacity:0;
   transform:translateX(30px);
@@ -39,6 +36,11 @@ body{
   transition:.45s ease;
 }
 
+/* Khusus page yang butuh scroll (punya banyak konten) */
+.page.scrollable{
+  justify-content:flex-start;
+  padding-top:100px; /* Lebih banyak space di atas */
+}
 
 .page.active{
   opacity:1;
@@ -48,28 +50,29 @@ body{
 
 /* BACK BUTTON */
 .back{
-  position:absolute;
+  position:fixed; /* Ganti ke fixed biar selalu kelihatan */
   top:20px;
   left:20px;
   width:42px;
   height:42px;
-  z-index:10;
-
+  z-index:999; /* Lebih tinggi */
   border:none;
   border-radius:50%;
   background:#fff;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:20px;
   line-height:1;
   padding:0;
-
   color:#ff5c8a;
   cursor:pointer;
   box-shadow:0 4px 12px rgba(255,92,138,.25);
+  transition:.25s;
+}
+
+.back:hover{
+  transform:scale(1.1);
 }
 
 /* BUTTON */
@@ -88,12 +91,17 @@ button{
 button:hover{transform:translateY(-3px)}
 button:active{transform:scale(.92)}
 
-/* ===== PAGE 1 ===== */
+/* ===== PAGE 1 (COVER) ===== */
+.cover{
+  padding:40px 20px !important; /* Reset padding buat cover */
+}
+
 .cover svg{
   width:100%;
   max-width:420px;
-  margin-bottom:0;
+  margin-bottom:8px;
 }
+
 .curve-text{
   font-family:'Cormorant Garamond',serif;
   fill:#fff;
@@ -101,30 +109,31 @@ button:active{transform:scale(.92)}
   letter-spacing:3px;
   font-weight:600;
 }
+
 .cover img{
   width:85%;
   max-width:340px;
   border-radius:22px;
-  margin-top:4px;
+  margin-top:12px;
   animation:sway 3.5s ease-in-out infinite;
 }
+
 @keyframes sway{
   0%{transform:rotate(-2deg)}
   50%{transform:rotate(2deg) translateY(-8px)}
   100%{transform:rotate(-2deg)}
 }
 
-/* PHOTOS PAGE 2 */
+/* ===== PAGE 2 (PHOTOS) ===== */
 .photos{
   display:flex;
   gap:24px;
-  margin-top:24px;
+  margin-top:32px;
+  margin-bottom:24px;
   justify-content:center;
   align-items:center;
   width:100%;
   max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
 }
 
 .photos img{
@@ -134,20 +143,15 @@ button:active{transform:scale(.92)}
   object-fit:cover;
   opacity:1;
   transition:opacity .6s ease, transform .6s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
 }
 
-/* (OPSIONAL) KALAU MAU ANIMASI */
-.photos img.hide{
-  opacity:0;
-  transform:translateY(20px);
-}
-
-/* MOBILE AMAN */
+/* MOBILE */
 @media (max-width:768px){
   .photos{
     flex-direction:column;
     align-items:center;
-    gap:18px;
+    gap:20px;
     width:100%;
   }
 
@@ -155,44 +159,63 @@ button:active{transform:scale(.92)}
     width:90%;
     max-width:360px;
   }
+
+  .curve-text{
+    font-size:38px;
+  }
 }
 
-
-/* LETTER */
+/* ===== LETTER CARD ===== */
 .card{
   width:100%;
-  max-width:420px;
-  background:rgba(255,255,255,.75);
-  -webkit-backdrop-filter:blur(10px);
-  backdrop-filter:blur(10px);
+  max-width:480px;
+  background:rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
   border-radius:24px;
-  padding:28px 22px;
+  padding:32px 26px;
   box-shadow:0 20px 40px rgba(255,182,193,.35);
   opacity:0;
+  margin:20px auto;
 }
 
 .card h1{
   font-family:'Cormorant Garamond',serif;
   color:#d63384;
   margin-bottom:12px;
+  font-size:28px;
 }
-.date{color:#b85c7a;margin-bottom:20px}
-.card p{font-size:15px;line-height:1.7;color:#5a3a44;margin-bottom:14px}
-.heart{font-size:26px;color:#ff5c8a}
+
+.date{
+  color:#b85c7a;
+  margin-bottom:20px;
+  font-size:15px;
+}
+
+.card p{
+  font-size:15px;
+  line-height:1.8;
+  color:#5a3a44;
+  margin-bottom:16px;
+  text-align:left;
+}
+
+.heart{
+  font-size:28px;
+  color:#ff5c8a;
+  margin-top:12px;
+}
 
 /* VIDEO */
 video{
   width:100%;
-  max-width:360px;
+  max-width:380px;
   border-radius:20px;
-  margin-top:20px;
+  margin-top:24px;
+  box-shadow:0 12px 28px rgba(0,0,0,.15);
 }
 
-.page.center{
-  justify-content:center;
-}
-
-/* CONTENT */
+/* CONTENT WRAPPER */
 .content{
   width:100%;
   max-width:960px;
@@ -201,8 +224,7 @@ video{
   align-items:center;
 }
 
-
-/* ===== ANIMATIONS BASED ON ACTIVE ===== */
+/* ===== ANIMATIONS ===== */
 .page.active .photos img{
   animation:photoPop .8s ease forwards;
 }
@@ -218,37 +240,52 @@ video{
 .page.active .card{
   animation:letterIn .9s ease forwards;
 }
+
 @keyframes letterIn{
   from{opacity:0;transform:translateY(30px) scale(.96)}
   to{opacity:1;transform:translateY(0) scale(1)}
 }
 
-/* FLOATING HEART */
+/* FLOATING HEARTS */
 .floating-heart{
-  position:absolute;
+  position:fixed;
   bottom:-30px;
   color:rgba(255,92,138,.45);
   font-size:18px;
   animation:floatUp 6s linear infinite;
   pointer-events:none;
+  z-index:1;
 }
+
 @keyframes floatUp{
   0%{transform:translateY(0) scale(.8);opacity:0}
   10%{opacity:1}
   100%{transform:translateY(-120vh) scale(1.2);opacity:0}
 }
 
-/* === CLASSES TO REPLACE INLINE STYLE (WARNING FIX) === */
-.title-pink{color:#d63384}
-.title-big{font-size:26px}
-.text-medium{font-size:17px;margin-top:6px}
+/* UTILITY CLASSES */
+.title-pink{
+  color:#d63384;
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:16px;
+}
+
+.title-big{
+  font-size:28px;
+}
+
+.text-medium{
+  font-size:17px;
+  margin-top:8px;
+  color:#6a4a54;
+}
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 -->
-<div class="page active cover center">
+<!-- PAGE 1 - COVER -->
+<div class="page active cover">
   <svg viewBox="0 0 500 200">
     <path id="curve" d="M40,150 Q250,70 460,150" fill="none"/>
     <text>
@@ -261,15 +298,12 @@ video{
   <button onclick="go(1)">Next →</button>
 </div>
 
-<!-- PAGE 2 -->
-<div class="page">
-  <button class="back" onclick="goBack()">
-  <span class="arrow">←</span>
-</button>
-
+<!-- PAGE 2 - PHOTOS -->
+<div class="page scrollable">
+  <button class="back" onclick="goBack()">←</button>
 
   <div class="content">
-    <h2 class="title-pink">This Is My Favorite View 🥰</h2>
+    <h2 class="title-pink title-big">This Is My Favorite View 🥰</h2>
 
     <div class="photos">
       <img src="foto1.jpg" alt="Photo 1">
@@ -281,13 +315,9 @@ video{
   </div>
 </div>
 
-
-<!-- PAGE 3 -->
-<div class="page center">
-  <button class="back" onclick="goBack()">
-  <span class="arrow">←</span>
-</button>
-
+<!-- PAGE 3 - QUESTION -->
+<div class="page">
+  <button class="back" onclick="goBack()">←</button>
 
   <h2 class="title-pink title-big">I wrote a letter for you 💌</h2>
   <p class="text-medium">Do you want to open it, love?</p>
@@ -295,41 +325,32 @@ video{
   <button onclick="go(3)">No</button>
 </div>
 
-<!-- PAGE 4 -->
+<!-- PAGE 4 - VIDEO (kalau pilih "No") -->
 <div class="page">
- <button class="back" onclick="goBack()">
-  <span class="arrow">←</span>
-</button>
+  <button class="back" onclick="goBack()">←</button>
 
-
-  <h2 class="title-pink">Still curious, aren’t you? 😏</h2>
+  <h2 class="title-pink title-big">Still curious, aren't you? 😏</h2>
   <video src="gift1.mp4" autoplay loop muted playsinline></video>
+  <button onclick="go(4)">Fine, show me the letter</button>
 </div>
 
-<!-- PAGE 5 -->
-<div class="page">
-<button class="back" onclick="goBack()">
-  <span class="arrow">←</span>
-</button>
-
+<!-- PAGE 5 - LETTER -->
+<div class="page scrollable">
+  <button class="back" onclick="goBack()">←</button>
 
   <div class="card">
-    <h1>Happy Birthday Khaiza&nbsp;Andini</h1>
+    <h1>Happy Birthday Khaiza Andini</h1>
 
     <div class="date">11 Februari 2007</div>
 
     <p><strong>Hai, selamat ulang tahun.</strong><br>
     Semoga hari ini dan hari-hari setelahnya kamu selalu punya alasan kecil untuk tersenyum.</p>
 
-    <p>Hari ini bukan cuma tentang bertambahnya usia kamu,  
-    tapi tentang betapa berharganya kamu bagi dunia.</p>
+    <p>Hari ini bukan cuma tentang bertambahnya usia kamu, tapi tentang betapa berharganya kamu bagi dunia.</p>
 
-    <p>Kamu hadir dengan caramu sendiri sederhana, lembut,  
-    dan selalu bikin hari yang biasa terasa lebih hangat.</p>
+    <p>Kamu hadir dengan caramu sendiri sederhana, lembut, dan selalu bikin hari yang biasa terasa lebih hangat.</p>
 
-    <p>Terima kasih sudah menjadi khaiza yang aku kenal.  
-    Dan satu hal yang penting:  
-    <strong>jangan terlalu keras sama diri kamu sendiri.</strong><br>
+    <p>Terima kasih sudah menjadi khaiza yang aku kenal. Dan satu hal yang penting: <strong>jangan terlalu keras sama diri kamu sendiri.</strong><br>
     Kamu sudah lebih dari cukup, bahkan saat kamu merasa sebaliknya.</p>
 
     <div class="heart">💗</div>
@@ -353,6 +374,9 @@ function go(i){
   pages[i].classList.add('active');
   historyStack.push(i);
 
+  // Scroll ke atas setiap ganti page
+  pages[i].scrollTop = 0;
+
   pages[i].querySelectorAll('.photos img, .card').forEach(retrigger);
 }
 
@@ -360,7 +384,9 @@ function goBack(){
   if(historyStack.length>1){
     const cur=historyStack.pop();
     pages[cur].classList.remove('active');
-    pages[historyStack.at(-1)].classList.add('active');
+    const prevPage = pages[historyStack.at(-1)];
+    prevPage.classList.add('active');
+    prevPage.scrollTop = 0;
   }
 }
 
