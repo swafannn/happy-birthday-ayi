@@ -49,27 +49,32 @@ body{
 /* BACK BUTTON */
 .back{
   position:absolute;
-  top:20px;
-  left:20px;
+  top:16px;
+  left:16px;
   width:42px;
   height:42px;
-  z-index:10;
-
-  border:none;
-  border-radius:50%;
-  background:#fff;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  border:none;
+  border-radius:50%;
+  background:#fff;
+
+  padding:0;
+  cursor:pointer;
+  z-index:1000;
+
+  box-shadow:0 4px 12px rgba(255,92,138,.25);
+}
+
+.back .arrow{
+  display:block;
   font-size:20px;
   line-height:1;
-  padding:0;
-
+  transform:translateX(-1px); /* ⬅️ FIX OPTIK MOBILE */
   color:#ff5c8a;
-  cursor:pointer;
-  box-shadow:0 4px 12px rgba(255,92,138,.25);
 }
 
 /* BUTTON */
@@ -192,6 +197,11 @@ video{
   justify-content:center;
 }
 
+.page > h2{
+  padding-top:50px;
+}
+
+
 /* CONTENT */
 .content{
   width:100%;
@@ -263,7 +273,10 @@ video{
 
 <!-- PAGE 2 -->
 <div class="page">
-  <button class="back" onclick="goBack()">←</button>
+  <button class="back" onclick="goBack()">
+  <span class="arrow">←</span>
+</button>
+
 
   <div class="content">
     <h2 class="title-pink">This Is My Favorite View 🥰</h2>
@@ -281,7 +294,10 @@ video{
 
 <!-- PAGE 3 -->
 <div class="page center">
-  <button class="back" onclick="goBack()">←</button>
+  <button class="back" onclick="goBack()">
+  <span class="arrow">←</span>
+</button>
+
 
   <h2 class="title-pink title-big">I wrote a letter for you 💌</h2>
   <p class="text-medium">Do you want to open it, love?</p>
@@ -291,7 +307,10 @@ video{
 
 <!-- PAGE 4 -->
 <div class="page">
- <button class="back" onclick="goBack()">←</button>
+ <button class="back" onclick="goBack()">
+  <span class="arrow">←</span>
+</button>
+
 
   <h2 class="title-pink">Still curious, aren’t you? 😏</h2>
   <video src="gift1.mp4" autoplay loop muted playsinline></video>
@@ -299,7 +318,10 @@ video{
 
 <!-- PAGE 5 -->
 <div class="page">
-<button class="back" onclick="goBack()">←</button>
+<button class="back" onclick="goBack()">
+  <span class="arrow">←</span>
+</button>
+
 
   <div class="card">
     <h1>Happy Birthday Khaiza&nbsp;Andini</h1>
