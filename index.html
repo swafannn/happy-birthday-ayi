@@ -24,18 +24,21 @@ body{
   position:absolute;
   inset:0;
   display:flex;
-  min-height:100vh;
-  padding:80px 20px 40px;
+  min-height:100dvh;
+  padding:40px 20px;
   text-align:center;
-  justify-content:center;   
-  align-items:center;
   flex-direction:column;
+
+  justify-content:flex-start; /* ⬅️ PENTING */
+  align-items:center;
+
   overflow-y:auto;
   opacity:0;
   transform:translateX(30px);
   pointer-events:none;
   transition:.45s ease;
 }
+
 
 .page.active{
   opacity:1;
@@ -45,12 +48,12 @@ body{
 
 /* BACK BUTTON */
 .back{
-  position:fixed;
-  top:16px;
-  left:16px;
+  position:absolute;
+  top:20px;
+  left:20px;
   width:42px;
   height:42px;
-  z-index:9999;
+  z-index:10;
 
   border:none;
   border-radius:50%;
@@ -60,9 +63,9 @@ body{
   align-items:center;
   justify-content:center;
 
-  padding:0;
-  line-height:1;      /* ⬅️ INI PENTING */
   font-size:20px;
+  line-height:1;
+  padding:0;
 
   color:#ff5c8a;
   cursor:pointer;
@@ -185,6 +188,20 @@ video{
   margin-top:20px;
 }
 
+.page.center{
+  justify-content:center;
+}
+
+/* CONTENT */
+.content{
+  width:100%;
+  max-width:960px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+
 /* ===== ANIMATIONS BASED ON ACTIVE ===== */
 .page.active .photos img{
   animation:photoPop .8s ease forwards;
@@ -231,7 +248,7 @@ video{
 <body>
 
 <!-- PAGE 1 -->
-<div class="page active cover">
+<div class="page active cover center">
   <svg viewBox="0 0 500 200">
     <path id="curve" d="M40,150 Q250,70 460,150" fill="none"/>
     <text>
@@ -246,19 +263,24 @@ video{
 
 <!-- PAGE 2 -->
 <div class="page">
-<button class="back" onclick="goBack()">←</button>
+  <button class="back" onclick="goBack()">←</button>
 
-  <h2 class="title-pink">This Is My Favorite View 🥰</h2>
-  <div class="photos">
-    <img src="foto1.jpg" alt="Photo 1">
-    <img src="foto2.jpg" alt="Photo 2">
-    <img src="foto3.jpg" alt="Photo 3">
+  <div class="content">
+    <h2 class="title-pink">This Is My Favorite View 🥰</h2>
+
+    <div class="photos">
+      <img src="foto1.jpg" alt="Photo 1">
+      <img src="foto2.jpg" alt="Photo 2">
+      <img src="foto3.jpg" alt="Photo 3">
+    </div>
+
+    <button onclick="go(2)">Next →</button>
   </div>
-  <button onclick="go(2)">Next →</button>
 </div>
 
+
 <!-- PAGE 3 -->
-<div class="page">
+<div class="page center">
   <button class="back" onclick="goBack()">←</button>
 
   <h2 class="title-pink title-big">I wrote a letter for you 💌</h2>
